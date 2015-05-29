@@ -65,5 +65,19 @@ public class OrderQueueTest {
         long result = order.getTimeReceived().getTime();
         assertTrue(Math.abs(result - expResult) < 1000);
     }
+    @Test
+     public void testWhenNoCustomerExistsThenThrowAnException() {
+        boolean didThrow = false;
+         OrderQueue orderQueue = new OrderQueue();
+        Order order = new Order("", "");
+        order.addPurchase(new Purchase("PROD0004", 450));
+        order.addPurchase(new Purchase("PROD0006", 250));
+       try{ orderQueue.add(order);
+       }catch(Exception ex){
+       didThrow=true;
+       }
+       
+        assertTrue(didThrow);
+    }
     
 }
