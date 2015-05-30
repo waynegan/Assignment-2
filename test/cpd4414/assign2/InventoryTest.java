@@ -43,5 +43,12 @@ public class InventoryTest {
         int result = Inventory.getQuantityForId(id);
         assertTrue(result >= 0);        
     }
+     @Test
+    public void testReportWhenNoOrdersThenReturnEmptyString() {
+        OrderQueue orderQueue = new OrderQueue();
+        String expResult = "";
+        String result = orderQueue.report();
+        assertEquals(expResult,result);        
+    }
     
 }
