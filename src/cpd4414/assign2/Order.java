@@ -104,9 +104,11 @@ public class Order {
       JSONObject json = new JSONObject();
        json.put("CustomerId",getCustomerId());
        json.put("CustomerName",getCustomerName());
-       json.put("timeReceived",getTimeReceived());
-       json.put("timeProcessed",getTimeProcessed());
-       json.put("timeFulfilled",getTimeFulfilled());
+
+       json.put("timeReceived",(getTimeReceived()!=null)?getTimeReceived().toString():null);
+       json.put("timeProcessed",(getTimeProcessed()!=null)?getTimeProcessed().toString():null);
+       json.put("timeFulfilled",(getTimeFulfilled()!=null)?getTimeFulfilled().toString():null);
+       
        JSONArray pList = new JSONArray(); 
      
        
