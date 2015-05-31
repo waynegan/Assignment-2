@@ -20,6 +20,8 @@ package cpd4414.assign2;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -98,6 +100,25 @@ public class Order {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    
+    public JSONObject toJSON(){
+      JSONObject json = new JSONObject();
+       json.put("CustomerId",getCustomerId());
+       json.put("CustomerName",getCustomerName());
+       json.put("timeReceived",getTimeReceived());
+       json.put("timeProcessed",getTimeProcessed());
+       json.put("timeFulfilled",getTimeFulfilled());
+       JSONArray pList = new JSONArray(); 
+     
+       
+        for(Purchase p: getListOfPurchases()){
+       JSONObject pObj = new JSONObject();
+       pObj.put("productId",p.getProductId());
+        pObj.put("quantity",p.getQuantity());
+        pList.add(pObj);
+       }
+        json.put("purchases", pList);
+        json.put("notes", getNotes());
+       return json;
+    }
     
 }
